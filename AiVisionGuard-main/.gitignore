@@ -1,0 +1,22 @@
+﻿# Server / runtime folders
+unicorn/
+uvicorn/
+
+# Virtual environments
+env/
+venv/
+
+# Runtime uploads
+uploads/
+
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Model files
+*.pth
+*.pt
+*.onnx

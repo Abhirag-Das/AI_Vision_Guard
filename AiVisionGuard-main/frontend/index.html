@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VisionGuard • AI Authenticity Checker</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Enhanced animations and micro-interactions */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .pulse {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    /* Enhanced gradient backgrounds */
+    .gradient-bg {
+      background: linear-gradient(135deg, #0f0f1b 0%, #1a1a2e 50%, #0f0f1b 100%);
+    }
+    
+    /* Improved card hover effects */
+    .card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+      transform: translateY(0);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+      border-color: rgba(139, 92, 246, 0.6);
+    }
+    
+    /* Enhanced button states */
+    .btn-primary {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    /* Subtle background patterns */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(20, 184, 166, 0.05) 0%, transparent 20%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Enhanced typography hierarchy */
+    .title {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, var(--purple), var(--teal), #6366f1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 10px rgba(139, 92, 246, 0.2);
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto 50px;
+    }
+    
+    /* Improved responsive spacing */
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      .title {
+        font-size: 2.5rem;
+      }
+      
+      .cards-container {
+        gap: 24px;
+      }
+    }
+    
+    /* Loading states */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Enhanced accessibility focus states */
+    .card:focus-within,
+    .btn:focus {
+      outline: 2px solid var(--purple);
+      outline-offset: 2px;
+    }
+    
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Enhanced header with subtle glow */
+    .header {
+      position: relative;
+    }
+    
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple), transparent);
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body class="gradient-bg">
+  <div class="container">
+    <div class="header">
+      <div class="logo-container">
+        <div class="logo floating">
+          <i class="fas fa-shield-alt"></i> VisionGuard
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-section text-center">
+      <h1 class="title mb-4">Detect AI-Generated Media</h1>
+      <p class="subtitle">
+        Advanced dual deep learning models analyze images and videos to verify authenticity with high accuracy. 
+        Upload content or paste YouTube links for instant verification.
+      </p>
+    </div>
+
+    <div class="stats-container mb-8 text-center">
+      <div class="stat-item inline-block mx-4">
+        <div class="text-2xl font-bold text-green-400">High%</div>
+        <div class="text-sm text-gray-400">Accuracy</div>
+      </div>
+      <div class="stat-item inline-block mx-4">
+        <div class="text-2xl font-bold text-purple-400">10K+</div>
+        <div class="text-sm text-gray-400">Analyses</div>
+      </div>
+      <div class="stat-item inline-block mx-4">
+        <div class="text-2xl font-bold text-teal-400"><i class="fas fa-bolt"></i></div>
+        <div class="text-sm text-gray-400">Instant</div>
+      </div>
+    </div>
+
+    <div class="cards-container">
+      <a href="/image" class="card group">
+        <div class="card-icon pulse">
+          <i class="fas fa-image fa-3x"></i>
+        </div>
+        <h2 class="card-title">Image Authenticity</h2>
+        <p class="card-description">Advanced AI analysis for photo verification</p>
+        <div class="card-badge bg-purple-600 text-white text-xs px-2 py-1 rounded-full mt-2 inline-block">
+          <i class="fas fa-star"></i> Popular
+        </div>
+      </a>
+
+      <a href="/video" class="card group">
+        <div class="card-icon pulse">
+          <i class="fas fa-video fa-3x"></i>
+        </div>
+        <h2 class="card-title">Video</h2>
+        <p class="card-description">Verify videos or paste YouTube links</p>
+        <div class="card-badge bg-teal-600 text-white text-xs px-2 py-1 rounded-full mt-2 inline-block">
+          <i class="fas fa-new"></i> New
+        </div>
+      </a>
+    </div>
+
+    <div class="features-section mt-12 text-center">
+      <h3 class="text-xl font-semibold mb-6">Advanced Detection Features</h3>
+      <div class="features-grid grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="feature-card p-4 bg-gray-800 rounded-lg">
+          <i class="fas fa-microscope text-purple-400 text-xl mb-2"></i>
+          <div class="text-sm">Pixel-level Analysis</div>
+        </div>
+        <div class="feature-card p-4 bg-gray-800 rounded-lg">
+          <i class="fas fa-brain text-teal-400 text-xl mb-2"></i>
+          <div class="text-sm">Neural Pattern Recognition</div>
+        </div>
+        <div class="feature-card p-4 bg-gray-800 rounded-lg">
+          <i class="fas fa-shield-alt text-red-400 text-xl mb-2"></i>
+          <div class="text-sm">Real-time Protection</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Enhanced animations and interactions
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add ripple effect to cards
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+          
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = x + 'px';
+          ripple.style.top = y + 'px';
+          ripple.classList.add('ripple');
+          
+          this.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      });
+
+      // Add scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      // Observe animated elements
+      document.querySelectorAll('.card, .stat-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
