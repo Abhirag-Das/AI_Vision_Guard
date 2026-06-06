@@ -32,7 +32,7 @@ Advanced media authenticity detection system that distinguishes **AI-generated**
 
 ```powershell
 # 1. Clone repository (includes models via Git LFS)
-git clone https://github.com/Kalipzokz/AiVisionGuard.git
+git clone https://github.com/Abhirag-Das/AI_Vision_Guard.git
 cd AivisionGuard
 
 # 2. Install dependencies
